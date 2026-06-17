@@ -9,7 +9,7 @@ cursor.src = './art/ui/cursor.png';
 
 export default class RadarScreen {
 
-    constructor(canvas, ships, mouse, abilityVisual, gridWidth = 16, gridHeight = 12, tileSizePixels = 50) {
+    constructor(canvas, ships, mouse, abilityVisual, gridWidth = 15, gridHeight = 11, tileSizePixels = 50) {
 
         this.canvas = canvas
         this.ctx = canvas.getContext("2d");
@@ -80,14 +80,12 @@ export default class RadarScreen {
 
     renderGridLabels() {
 
-        let gridWidth = this.gridWidth - 1;
-        let gridHeight = this.gridHeight;
         let ctx = this.ctx;
         this.ctx.font = "bold 12px Consolas";
         ctx.fillStyle = "rgb(140,170,170)";
 
         // label rows
-        for (let i = 0; i < this.tileSizePixels * (gridHeight + 1); i += this.tileSizePixels) {
+        for (let i = 0; i < this.tileSizePixels * (this.gridHeight); i += this.tileSizePixels) {
 
             let string = i / this.tileSizePixels;
             let x = this.ships[0].x - this.canvas.width / 2;
@@ -96,8 +94,8 @@ export default class RadarScreen {
             ctx.fillText(string, x + 15, y + 3);
         }
 
-        //label columns
-        for (let i = 0; i < this.tileSizePixels * (gridWidth + 1); i += this.tileSizePixels) {
+        // label columns
+        for (let i = 0; i < this.tileSizePixels * (this.gridWidth); i += this.tileSizePixels) {
 
             let string = i / this.tileSizePixels;
             let x = i + this.tileSizePixels / 2;
